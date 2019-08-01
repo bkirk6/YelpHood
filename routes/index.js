@@ -16,7 +16,7 @@ router.get("/register", function(req, res){
 //handle sign up
 router.post("/register", function(req, res){
     var newUser = new User({username: req.body.username});
-    if(req.body.adminCode === 'Clemmie') {
+    if(req.body.adminCode === 'secretcode') {
         newUser.isAdmin = true;
     }
     User.register(newUser, req.body.password, function(err, user){
