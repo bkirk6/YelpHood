@@ -11,7 +11,7 @@ middlewareObj.checkNeighborhoodOwnership = function checkNeighborhoodOwnership(r
                 req.flash("error", "Error: Neighborhood not found.");
                 res.redirect("back");
             } else {
-                if (foundNeighborhood.author.id.equals(req.user._id)){
+                if (foundNeighborhood.author.id.equals(req.user._id) || req.user.isAdmin){
                     next();
                 } else {
                     req.flash("error", "Error: Only post owners may modify.");
@@ -35,7 +35,7 @@ middlewareObj.checkCommentOwnership = function checkCommentOwnership(req, res, n
                     req.flash("error", "Item not found.");
                     return res.redirect("back");
                 }
-                if (foundComment.author.id.equals(req.user._id)){
+                if (foundComment.author.id.equals(req.user._id) || req.user.isAdmin){
                     next();
                 } else {
                     req.flash("error", "Error: Only comment owners may modify.");
@@ -56,7 +56,7 @@ middlewareObj.checkReviewOwnership = function(req, res, next) {
                 res.redirect("back");
             }  else {
                 // does user own the comment?
-                if(foundReview.author.id.equals(req.user._id)) {
+                if(foundReview.author.id.equals(req.user._id) || req.user.isAdmin) {
                     next();
                 } else {
                     req.flash("error", "Only review owners may modify.");

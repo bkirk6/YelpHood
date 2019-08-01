@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var Neighborhood = require("../models/neighborhood");
+var Comment = require("../models/comment");
 var Review = require("../models/review");
 var middleware = require("../middleware");
 

@@ -19,7 +19,7 @@
                 <p>
                     <em>Submitted by <%= neighborhood.author.username %>, <%= moment(neighborhood.createdAt).fromNow() %></em>
                 </p>
-                <% if (currentUser && neighborhood.author.id.equals(currentUser._id)) { %>
+                <% if (currentUser && neighborhood.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin) { %>
                     <a class="btn btn-xs btn-warning" href="/neighborhoods/<%= neighborhood._id %>/edit">Edit</a>
                     <form id="delete-form" action="/neighborhoods/<%= neighborhood._id %>?_method=DELETE" method="POST">
                         <button class="btn btn-xs btn-danger">Delete</button>
@@ -62,7 +62,7 @@
                             <p style="text-align: justify; word-wrap: break-word;">
                                 <%= review.text %>
                             </p>
-                            <% if(currentUser && review.author.id.equals(currentUser._id)){ %>
+                            <% if(currentUser && review.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
                             <a class="btn btn-xs btn-warning"
                                 href="/neighborhoods/<%=neighborhood._id %>/reviews/<%=review._id %>/edit">Edit</a>
                             <form id="delete-form" action="/neighborhoods/<%=neighborhood._id %>/reviews/<%=review._id %>?_method=DELETE" method="POST">
@@ -97,7 +97,7 @@
                         <p>
                             <%= comment.text %>
                         </p>
-                        <% if (currentUser && comment.author.id.equals(currentUser._id)) { %>
+                        <% if (currentUser && comment.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin) { %>
                             <a 
                                 class="btn btn-xs btn-warning" 
                                 href="/neighborhoods/<%= neighborhood._id %>/comments/<%= comment._id %>/edit">
