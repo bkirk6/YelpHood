@@ -1,0 +1,26 @@
+<% include ../partials/header %>
+
+
+<div class="row">
+    <h1>Edit <%= neighborhood.name %></h1>
+    <div>
+        <form action="/neighborhoods/<%= neighborhood._id %>?_method=PUT" method="POST">
+            <div class="form-group">
+                <input class="form-control" type="text" name="neighborhood[name]" value="<%= neighborhood.name %>">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" name="neighborhood[image]" value="<%= neighborhood.image %>">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" name="neighborhood[description]" value="<%= neighborhood.description %>">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary btn-block">Submit!</button>
+            </div>
+        </form>
+        <a href="/neighborhoods">Back to Neighborhoods</a>
+    </div>
+</div>
+
+
+<% include ../partials/footer %>
